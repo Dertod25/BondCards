@@ -1,30 +1,24 @@
-import React, { Component } from 'react';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import React, {Component} from "react";
+import {CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from "recharts";
+import moment from "moment";
 
 export default class Card extends Component {
 
     render() {
-        const data = [{date: '02.07', uv: 22.5},
-            {date: '05.07', uv: 35},
-            {date: '09.07', uv: 44.5},
-            {date: '15.07', uv: 70.6},
-            {date: '19.07', uv: 55.3},
-            {date: '22.07', uv: 73.3},
-            {date: '27.07', uv: 22.2},
-            {date: '31.07', uv: 17.8},
-            {date: '02.08', uv: 34.6},
-        ];
+        const {bondPoints, dataKey, dateOption} = this.props;
+        const data = bondPoints.reduce((a, c, i) => (i >= dateOption ? [...a, ...c] : a), []);
 
         return (
-            <div className="">
+            <div className="chart">
                 <ResponsiveContainer width="100%" minHeight={320}>
-                <LineChart  data={data}>
-                    <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-                    <CartesianGrid stroke="#ccc" />
-                    <Tooltip />
-                    <XAxis dataKey="date" />
-                    <YAxis />
-                </LineChart>
+                    <LineChart data={data}>
+                        <Line type="monotone" dataKey={dataKey.toLowerCase()} stroke="#8884d8" dot={false}/>
+                        <CartesianGrid stroke="#ccc"/>
+                        <Tooltip />
+                        <XAxis dataKey="date" padding={{left: 10, right: 10}}
+                               tickFormatter={(time) => moment(time).format("MM.DD")}/>
+                        <YAxis padding={{top: 50}}/>
+                    </LineChart>
                 </ResponsiveContainer>
             </div>
 

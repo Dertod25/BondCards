@@ -4,16 +4,20 @@ import {Button, ButtonGroup, Dropdown, DropdownButton} from "react-bootstrap";
 export default class OptionsMenu extends Component {
 
     render() {
+        const {changeDateOption, changeTypeOption, dateOption, typeOption} = this.props;
         return (
             <div className="options-container">
                 <ButtonGroup>
-                    {['Week', 'Month', 'Quarter', 'Year', 'Max'].map(
-                        (title) => <Button variant="outline-info " size="sm">{title}</Button>)}
+                    {['Max', 'Year', 'Quarter', 'Month', 'Week'].map(
+                        (title, i) => <Button variant="outline-info "
+                                              className={`${dateOption === i ? 'activeButton' : ''}`} size="sm" key={i}
+                                              onClick={() => changeDateOption(i)}
+                        >{title}</Button>)}
                 </ButtonGroup>
-                <DropdownButton variant="outline-info" id="dropdown-outline-button" title="Dropdown button" size="sm">
-                    <Dropdown.Item >Yield</Dropdown.Item>
-                    <Dropdown.Item >Spread</Dropdown.Item>
-                    <Dropdown.Item >Price</Dropdown.Item>
+                <DropdownButton variant="outline-info" id="dropdown-outline-button" title={typeOption} size="sm">
+                    <Dropdown.Item onClick={() => changeTypeOption('Yield')}>Yield</Dropdown.Item>
+                    <Dropdown.Item onClick={() => changeTypeOption('Spread')}>Spread</Dropdown.Item>
+                    <Dropdown.Item onClick={() => changeTypeOption('Price')}>Price</Dropdown.Item>
                 </DropdownButton>
             </div>
 

@@ -1,9 +1,9 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import logger from "redux-logger";
-import socket from "./modules/bonds";
+import bonds from "./modules/bonds";
 
 const reducer = combineReducers({
-    socket,
+    bonds
 });
 
 export default function () {

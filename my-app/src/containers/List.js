@@ -5,7 +5,8 @@ import * as bondsActions from "../redux/modules/bonds";
 
 @connect(
     state => ({
-        currentChannels: state.socket.currentChannels,
+        bondsList: state.bonds.bondsList,
+        currentBond: state.bonds.currentBond
     }),
     dispatch =>
         bindActionCreators(
@@ -17,17 +18,20 @@ import * as bondsActions from "../redux/modules/bonds";
 export default class List extends Component {
 
     render() {
+        const {bondsList, changeBond, currentBond} = this.props;
+
         return (
             <div className="list-container">
                 <div className="card-header">
                     <p>ISIN List</p>
                 </div>
-                <div>1</div>
-                <div>1</div>
-                <div>1</div>
-                <div>1</div>
-                <div>1</div>
-                <div>1</div>
+                <div>{Object.keys(bondsList).map((isin, i) =>
+                    <div key={i}
+                         onClick={() => changeBond(isin)}
+                         className={`cc ${currentBond === isin ? 'active' : ''}`}
+                    >{isin}</div>
+                )}
+                </div>
             </div>
 
         );
