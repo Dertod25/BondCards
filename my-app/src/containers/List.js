@@ -21,14 +21,14 @@ export default class List extends Component {
         const {bondsList, changeBond, currentBond} = this.props;
 
         return (
-            <div className="list-container">
-                <div className="card-header">
-                    <p>ISIN List</p>
+            <div className="side-bar">
+                <div className="side-bar__header">
+                    <p>Bonds List</p>
                 </div>
-                <div>{Object.keys(bondsList).map((isin, i) =>
+                <div className="list">{Object.keys(bondsList).map((isin, i) =>
                     <div key={i}
                          onClick={() => changeBond(isin)}
-                         className={`cc ${currentBond === isin ? 'active' : ''}`}
+                         className={`btn btn-outline-info  btn-sm  list-item ${currentBond === isin ? 'active' : ''}`}
                     >{isin}</div>
                 )}
                 </div>

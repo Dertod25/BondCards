@@ -6,11 +6,11 @@ export default class OptionsMenu extends Component {
     render() {
         const {changeDateOption, changeTypeOption, dateOption, typeOption} = this.props;
         return (
-            <div className="options-container">
+            <div className="main__options">
                 <ButtonGroup>
                     {['Max', 'Year', 'Quarter', 'Month', 'Week'].map(
                         (title, i) => <Button variant="outline-info "
-                                              className={`${dateOption === i ? 'activeButton' : ''}`} size="sm" key={i}
+                                              className={`${dateOption === i ? 'active' : ''}`} size="sm" key={i}
                                               onClick={() => changeDateOption(i)}
                         >{title}</Button>)}
                 </ButtonGroup>

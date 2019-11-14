@@ -9,13 +9,13 @@ export default class Card extends Component {
         const data = bondPoints.reduce((a, c, i) => (i >= dateOption ? [...a, ...c] : a), []);
 
         return (
-            <div className="chart">
-                <ResponsiveContainer width="100%" minHeight={320}>
+            <div className="main__chart">
+                <ResponsiveContainer className="chart__resp-container">
                     <LineChart data={data}>
                         <Line type="monotone" dataKey={dataKey.toLowerCase()} stroke="#8884d8" dot={false}/>
                         <CartesianGrid stroke="#ccc"/>
                         <Tooltip />
-                        <XAxis dataKey="date" padding={{left: 10, right: 10}}
+                        <XAxis dataKey="date" className="chart__xaxis" padding={{left: 10, right: 10}}
                                tickFormatter={(time) => moment(time).format("MM.DD")}/>
                         <YAxis padding={{top: 50}}/>
                     </LineChart>

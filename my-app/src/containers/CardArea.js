@@ -25,11 +25,15 @@ export default class CardArea extends Component {
         const bond = currentBond ? bondsList[currentBond] : {};
         const bondPoints = bondsDataPoints[currentBond];
         return (
-            <div className="card-container">
-                <CardHeder bond={bond}/>
-                <OptionsMenu changeDateOption={changeDateOption} changeTypeOption={changeTypeOption}
-                             dateOption={dateOption} typeOption={typeOption}/>
-                {bondPoints && <Card bondPoints={bondPoints} dataKey={typeOption} dateOption={dateOption}/>}
+            <div className="main">
+                {bondPoints ? <React.Fragment>
+                    <CardHeder bond={bond}/>
+                    <OptionsMenu changeDateOption={changeDateOption} changeTypeOption={changeTypeOption}
+                                 dateOption={dateOption} typeOption={typeOption}/>
+                    <Card bondPoints={bondPoints} dataKey={typeOption} dateOption={dateOption}/>
+                </React.Fragment> : <div className="alt-info">
+                    <h4>Please, select a bond card from the list to display.</h4>
+                </div>}
             </div>
 
         );
